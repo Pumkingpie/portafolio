@@ -1,26 +1,104 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #c11e38, #220b34);
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: hsl(165, 79%, 60%); /* Verde menta claro (#40ffaa) */
+  --foreground: hsl(214, 91%, 60%); /* Azul claro (#4079ff) */
+  --card: hsl(165, 79%, 60%); /* Verde menta claro (#40ffaa) */
+  --card-foreground: hsl(214, 91%, 60%); /* Azul claro (#4079ff) */
+  --popover: hsl(165, 79%, 60%); /* Verde menta claro (#40ffaa) */
+  --popover-foreground: hsl(214, 91%, 60%); /* Azul claro (#4079ff) */
+  --primary: hsl(214, 91%, 60%); /* Azul claro (#4079ff) */
+  --primary-foreground: hsl(165, 79%, 60%); /* Verde menta claro (#40ffaa) */
+  --secondary: hsl(165, 79%, 60%); /* Verde menta claro (#40ffaa) */
+  --secondary-foreground: hsl(214, 91%, 60%); /* Azul claro (#4079ff) */
+  --muted: hsl(165, 79%, 60%); /* Verde menta claro (#40ffaa) */
+  --muted-foreground: hsl(214, 91%, 60%); /* Azul claro (#4079ff) */
+  --accent: hsl(214, 91%, 60%); /* Azul claro (#4079ff) */
+  --accent-foreground: hsl(165, 79%, 60%); /* Verde menta claro (#40ffaa) */
+  --destructive: hsl(0, 100%, 50%); /* Rojo puro, para acciones destructivas */
+  --destructive-foreground: hsl(214, 91%, 60%); /* Azul claro (#4079ff) */
+  --border: hsl(214, 91%, 60%); /* Azul claro (#4079ff) */
+  --input: hsl(165, 79%, 60%); /* Verde menta claro (#40ffaa) */
+  --ring: hsl(214, 91%, 60%); /* Azul claro (#4079ff) */
+  --radius: 0.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+[data-theme="dark"] {
+  --border: 39 39 42; /* #27272a, gris oscuro */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-[#c11e38] to-[#220b34] bg-clip-text text-transparent;
+  }
+
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border-white/10;
+  }
+
+  .gradient-button {
+    background: linear-gradient(60deg, #40ffaa,#220b34,#40ffaa);
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  background: linear-gradient(to bottom,  #4079ff, #220b34);
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom,#40ffaa, #4079ff);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom,#40ffaa, #4079ff);
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 5s ease infinite;
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
 }
